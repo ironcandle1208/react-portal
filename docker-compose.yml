@@ -1,0 +1,8 @@
+services:
+  front:
+    build: .
+    ports: 
+      - "5173:5173"
+    stdin_open: true
+    tty: true
+    
