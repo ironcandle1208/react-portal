@@ -1,9 +1,19 @@
 name: GitHub Actions Demo
 
-on: [push]
+on:
+  push:
 
 jobs:
-  echo_hello_world:
+  s3ls:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - run: echo "hello world!!"
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: 'ap-northeast-3' # リージョンを指定
+          role-to-assume: 'arn:aws:iam::011077020616:role/oidc-test-role' # 作成した IAM ロールの ARN
+
+      # プライベートな S3 バケットを読み取ってみる
+      - run: aws s3 ls s3://samarkandria.com
