@@ -28,6 +28,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 24
+      # dependencyのキャッシュ
+      - name: Cache node_modules
+        id: cache-restore
+        uses: actions/cache@v4
+        with:
+          #キャッシュしたファイルとキーを格納する場所(OSによって異なる)
+          path: ~/.npm
+          #キャッシュのリストアや保存をするためのキー
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      # dependencyのインストール
+      - name: Dependency Install
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        run: npm ci
       # ビルド
       - run: npm run build
       # awsへのアクセス情報を設定
