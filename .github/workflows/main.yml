@@ -35,7 +35,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       # dependencyのインストール
-      - run: npm ci
+      - run: cd app && npm ci
       # lint実行
       - run: npm run lint
       # ビルド
