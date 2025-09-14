@@ -49,7 +49,7 @@ jobs:
           role-to-assume: ${{ env.AWS_ROLE_ARN }}
           aws-region: 'ap-northeast-3'
       # S3にビルドしたものをアップロード
-      - run: aws s3 sync --recursive build s3://samarkandria.com/
+      - run: aws s3 sync dist/ s3://samarkandria.com/
     
   # test:
   #   runs-on: ubuntu-latest
