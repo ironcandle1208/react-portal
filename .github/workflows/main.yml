@@ -10,10 +10,13 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: aws-actions/configure-aws-credentials@v1
+      - run: aws s3 ls s3://samarkandria.com
+      - name: Checkout-Code
+        uses: actions:checkout@v2
+      - name: Set-up-AWS-Credentials
+        uses: aws-actions/configure-aws-credentiols@v1
         with:
           aws-region: 'ap-northeast-3' # リージョンを指定
-          role-to-assume: 'arn:aws:iam::011077020616:role/oidc-test-role' # 作成した IAM ロールの ARN
-
-      # プライベートな S3 バケットを読み取ってみる
-      - run: aws s3 ls s3://samarkandria.com
+          rolw-to-assume: 'arn:aws:iam::011077020616:role/oidc-test-role' #　作成したIAMロールのARN
+      - name: Update-to-S3
+        run: aws s3 sync ./app/ s3://samarkandria.com/
