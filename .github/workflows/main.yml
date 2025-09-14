@@ -14,6 +14,9 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
     steps:
       # チェックアウトするアクション
       - name: Checkout Code
@@ -35,7 +38,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       # dependencyのインストール
-      - run: cd app && npm ci
+      - run: npm ci
       # lint実行
       - run: npm run lint
       # ビルド
