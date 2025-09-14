@@ -10,7 +10,6 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - run: aws s3 ls s3://samarkandria.com
       - name: Checkout-Code
         uses: actions/checkout@v2
       - name: Set-up-AWS-Credentials
