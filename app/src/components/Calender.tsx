@@ -2,7 +2,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import React from 'react'
 
-const Calendar: React.FC = props => {
+const Calendar: React.FC = () => {
     return (
         <div>
             <FullCalendar
