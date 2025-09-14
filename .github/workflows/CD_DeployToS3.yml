@@ -2,8 +2,8 @@ name: Deploy To S3
 
 on:
   push:
-  branches:
-    - main
+    branches:
+      - main
 
 permissions:
   id-token: write
