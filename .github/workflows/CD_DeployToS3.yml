@@ -39,10 +39,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
       # dependencyのインストール
       - name: Dependency Install
-        if: steps.cache-restore.outputs.cache-hit != 'true'
         run: npm ci
       # ビルド
-      - run: npm run build
+      - name: Build
+        run: npm run build
       # awsへのアクセス情報を設定
       - uses: aws-actions/configure-aws-credentials@v1
         with:
